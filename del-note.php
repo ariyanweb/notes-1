@@ -6,7 +6,9 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 $userNumber = $_SESSION['user'];
 
-// if($userNumber==)
+if($userNumber!=$_GET['n_user_id']){
+    header('location: panel.php');
+}
 
 if (isset($_GET['n_id']) && !empty($_GET['n_id'])) {
     $id = $_GET['n_id'];

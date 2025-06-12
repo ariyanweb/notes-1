@@ -192,6 +192,20 @@ $output = mysqli_fetch_all($check, MYSQLI_NUM);
         #imageModalClose:hover {
             color: red;
         }
+
+          .floating-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
     </style>
 </head>
 <?php if (isset($error)): ?>
@@ -240,7 +254,15 @@ $output = mysqli_fetch_all($check, MYSQLI_NUM);
 </script>
 
 <body class="position-relative">
-    <form action="handle-note.php" method="POST" enctype="multipart/form-data">
+    <button class="btn btn-primary shadow floating-btn" id="addNote">
+  <i class="fas fa-plus"></i>
+</button>
+
+
+
+
+
+    <form action="handle-note.php" method="POST" enctype="multipart/form-data" id="note">
         <div id="paper">
             <div>
                 <input type="text" name="title" placeholder="Title :" id="title" style="width: 93%;">
@@ -274,8 +296,8 @@ $output = mysqli_fetch_all($check, MYSQLI_NUM);
                     <div>
                         <div class="action-buttons position-relative">
                             <div class="form">
-                                <a href="http://localhost/p7/edit-note.php?n_id=<?php echo $out[$i][0] ?>&n_Title=<?php echo $out[$i][1] ?>&n_Content=<?php echo $out[$i][2] ?>" class="cursor-pointer btn update" > edit  </a>
-                                <a href="http://localhost/p7/del-note.php?n_id=<?php echo $out[$i][0] ?>" class="cursor-pointer btn delete" >delete</a>
+                                <a href="http://localhost/p7/edit-note.php?n_id=<?php echo $out[$i][0] ?>&n_Title=<?php echo $out[$i][1] ?>&n_Content=<?php echo $out[$i][2] ?>&n_user_id=<?php echo $out[$i][4] ?>" class="cursor-pointer btn update" > edit  </a>
+                                <a href="http://localhost/p7/del-note.php?n_id=<?php echo $out[$i][0] ?>&n_user_id=<?php echo $out[$i][4] ?>" class="cursor-pointer btn delete" >delete</a>
                                 <div class="detail">
                                     <p class="mb-0" onclick="showModal('<?php echo $out[$i][5]; ?>')">click to view image</p>
                                 </div>
@@ -297,5 +319,4 @@ $output = mysqli_fetch_all($check, MYSQLI_NUM);
     </div>
 
 </body>
-
 </html>
